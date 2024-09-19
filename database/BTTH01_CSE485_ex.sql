@@ -127,3 +127,8 @@ CREATE TABLE Users (
     is_admin BIT DEFAULT 0,
     created_at DATETIME DEFAULT GETDATE()
 )
+
+
+
+
+--ok
