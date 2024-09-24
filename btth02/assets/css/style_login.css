@@ -1,0 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+.alert {
+    position: fixed; /* Thay đổi thành fixed */
+    top: 2px; /* Đặt khoảng cách từ trên xuống */
+    left: 50%; /* Đặt ở giữa theo chiều ngang */
+    transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+    padding: 15px 20px;
+    max-width: 300px;
+    width: auto;
+    z-index: 1000;
+}
+
+.notification {
+    position: fixed; /* Hoặc absolute, tùy ý */
+    top: 20px; /* Cách từ trên xuống */
+    left: 50%;
+    transform: translateX(-50%); /* Căn giữa theo chiều ngang */
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 5px;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+
+.social_icon span{
+font-size: 60px;
+margin-left: 10px;
+color: #FFC312;
+}
+
+.social_icon span:hover{
+color: #000;
+cursor: pointer;
+}
+
+.card-header h3{
+color: white;
+}
+
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.login_btn:hover{
+color: #FFC312;
+background-color: black;
+}
+
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+text-decoration:none;
+}
+
+
