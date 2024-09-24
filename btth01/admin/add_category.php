@@ -13,8 +13,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
 // Kiểm tra kết nối
 if ($conn->connect_error) {
-    error_log("Kết nối thất bại: " . $conn->connect_error);
-    die("Có lỗi xảy ra. Vui lòng thử lại sau.");
+    die("Kết nối thất bại: " . $conn->connect_error);
 }
 
 // Tạo CSRF token nếu chưa có
@@ -34,37 +33,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
     // Kiểm tra xem tên thể loại có trống hay không
     if (!empty($ten_tloai)) {
-        // Chuẩn bị truy vấn SQL để thêm thể loại
-        $sql = "INSERT INTO theloai (ten_tloai) VALUES (?)";
-        $stmt = $conn->prepare($sql);
+        // Lấy giá trị lớn nhất hiện tại của cột khóa chính
+        $result = $conn->query("SELECT MAX(ma_tloai) AS max_id FROM theloai");
         
-        if ($stmt === false) {
-            error_log("Lỗi chuẩn bị truy vấn: " . $conn->error);
-            die("Có lỗi xảy ra. Vui lòng thử lại sau.");
-        }
+        if ($result) {
+            $row = $result->fetch_assoc();
+            $new_id = $row['max_id'] + 1;
 
-        $stmt->bind_param("s", $ten_tloai);
+            // Chuẩn bị truy vấn SQL để thêm thể loại
+            $sql = "INSERT INTO theloai (ma_tloai, ten_tloai) VALUES (?, ?)";
+            $stmt = $conn->prepare($sql);
+            
+            if ($stmt === false) {
+                error_log("Lỗi chuẩn bị truy vấn: " . $conn->error);
+                die("Có lỗi xảy ra. Vui lòng thử lại sau.");
+            }
 
-        // Thực thi truy vấn
-        if ($stmt->execute()) {
-            // Nếu thành công, chuyển hướng về trang danh sách thể loại
-            header("Location: category.php");
-            exit(); // Đảm bảo script dừng sau khi chuyển hướng
+            $stmt->bind_param("is", $new_id, $ten_tloai);
+
+            // Thực thi truy vấn
+            if ($stmt->execute()) {
+                // Nếu thành công, chuyển hướng về trang danh sách thể loại
+                header("Location: category.php");
+                exit(); // Đảm bảo script dừng sau khi chuyển hướng
+            } else {
+                // Nếu xảy ra lỗi khi thêm thể loại
+                echo "Lỗi khi thêm thể loại: " . $stmt->error;
+            }
+
+            // Đóng statement
+            $stmt->close();
         } else {
-            // Nếu xảy ra lỗi khi thêm thể loại
-            echo "Lỗi khi thêm thể loại: " . $stmt->error;
+            // Nếu xảy ra lỗi khi thực hiện truy vấn
+            echo "Lỗi khi lấy giá trị lớn nhất của id: " . $conn->error;
         }
-
-        // Đóng statement
-        $stmt->close();
     } else {
         // Nếu tên thể loại trống
         echo "<script>alert('Vui lòng nhập tên thể loại'); window.history.back();</script>";
     }
 }
-
-// Đóng kết nối
-$conn->close();
 ?>
 
 <!DOCTYPE html>
