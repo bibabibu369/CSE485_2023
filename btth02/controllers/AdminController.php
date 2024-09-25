@@ -2,7 +2,7 @@
 
 class AdminController {
     public function index() {
-        session_start();
+        // session_start();
         if (!isset($_SESSION['username'])) {
             header('Location: index.php?controller=user&action=login');
             exit();

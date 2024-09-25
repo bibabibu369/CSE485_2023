@@ -69,27 +69,6 @@ class UserController {
         $conn = null;
     }
 
-    public function delete() {
-        include 'configs/DBConnection.php'; // Kết nối CSDL
-    
-        $db = new DBConnection();
-        $conn = $db->getConnection();
-    
-        $id = $_GET['id'];
-        $sql = "DELETE FROM users WHERE ma_user = :id";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindValue(':id', $id);
-    
-        if ($stmt->execute()) {
-            header('Location: index.php?controller=user&action=index');
-        } else {
-            echo "Có lỗi xảy ra, vui lòng thử lại!";
-        }
-    
-        $conn = null;
-
-    }
-
     public function update() {
         include 'configs/DBConnection.php'; // Kết nối CSDL
     
@@ -124,6 +103,27 @@ class UserController {
         $conn = null;
     }
 
+    public function delete() {
+        include 'configs/DBConnection.php'; // Kết nối CSDL
+    
+        $db = new DBConnection();
+        $conn = $db->getConnection();
+    
+        $id = $_GET['id'];
+        $sql = "DELETE FROM users WHERE ma_user = :id";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(':id', $id);
+    
+        if ($stmt->execute()) {
+            header('Location: index.php?controller=user&action=index');
+        } else {
+            echo "Có lỗi xảy ra, vui lòng thử lại!";
+        }
+    
+        $conn = null;
+
+    }
+
     public function login() {
         include 'configs/DBConnection.php'; // Kết nối CSDL
 
@@ -133,7 +133,7 @@ class UserController {
         $login_message = '';
         $username = '';
 
-        session_start();
+        // session_start();
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $username = $_POST['username'];
             $password = $_POST['password'];
