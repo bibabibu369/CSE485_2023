@@ -12,7 +12,7 @@ class AuthorService {
 
         $Authors = [];
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $Author = new Author($row['ma_tgia'], $row['ten_tgia']);
+            $Author = new Author($row['ma_tgia'], $row['ten_tgia'], $row['hinh_tgia']);
             array_push($Authors, $Author);
         }
 
