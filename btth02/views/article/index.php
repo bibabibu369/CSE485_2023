@@ -77,7 +77,7 @@
                                 echo "<td>" . $article->getNoidung() . "</td>";
                                 echo "<td>" . $article->getMaTgia() . "</td>";
                                 echo "<td>" . $article->getNgayviet() . "</td>";
-                                echo "<td><img src='" . $article->getHinhanh() . "' alt='Hình ảnh' width='100'></td>";
+                                echo "<td><img src='" . $article->getHinhanh() . "' alt='" . $article->getTenBhat() . "' width='100'></td>";
                                 echo "<td><a href='index.php?controller=article&action=edit&id=" . $article->getMaBviet() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
                                 echo "<td><a href='index.php?controller=article&action=delete&id=" . $article->getMaBviet() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa bài viết này?\");'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";

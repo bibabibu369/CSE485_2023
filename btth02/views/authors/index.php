@@ -52,26 +52,28 @@
                         <tr>
                             <th scope="col">Mã tác giả</th>
                             <th scope="col">Tên tác giả</th>
+                            <th scope="col">Hình ảnh</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
-                        if (count($authors) > 0) {
-                            // Hiển thị dữ liệu
-                            foreach ($authors as $author) {
-                                echo "<tr>";
-                                echo "<th scope='row'>" . $author->getMaTgia() . "</th>";
-                                echo "<td>" . $author->getTenTgia() . "</td>";
-                                echo "<td><a href='index.php?controller=author&action=edit&id=" . $author->getMaTgia() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-                                echo "<td><a href='index.php?controller=author&action=delete&id=" . $author->getMaTgia() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa người dùng này?\");'><i class='fa-solid fa-trash'></i></a></td>";
-                                echo "</tr>";
-                            }
-                        } else {
-                            echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
+                    <?php
+                    if (count($authors) > 0) {
+                        // Hiển thị dữ liệu
+                        foreach ($authors as $author) {
+                            echo "<tr>";
+                            echo "<th scope='row'>" . $author->getMaTgia() . "</th>";
+                            echo "<td>" . $author->getTenTgia() . "</td>";
+                            echo "<td><img src='" . $author->getHinhAnh() . "' alt='" . $author->getTenTgia() . "' style='width: 100px; height: 100px;'></td>";
+                            echo "<td><a href='index.php?controller=author&action=edit&id=" . $author->getMaTgia() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                            echo "<td><a href='index.php?controller=author&action=delete&id=" . $author->getMaTgia() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa người dùng này?\");'><i class='fa-solid fa-trash'></i></a></td>";
+                            echo "</tr>";
                         }
-                        ?>
+                    } else {
+                        echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
+                    }
+                    ?>
                     </tbody>
                 </table>
             </div>
