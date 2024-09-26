@@ -45,15 +45,15 @@
 
     <main class="container mt-5 mb-5">
         <h3 class="text-center text-uppercase fw-bold">Sửa thông tin thể loại</h3>
-        <form action="index.php?controller=category&action=update&id=<?php echo htmlspecialchars($category['ma_tloai']); ?>" method="post">
+        <form action="index.php?controller=category&action=update&id=<?php echo htmlspecialchars($category->getMaTloai()); ?>" method="post">
             <div class="input-group mt-3 mb-3">
                 <span class="input-group-text">Mã thể loại</span>
-                <input type="text" class="form-control" name="txtCatId" readonly value="<?php echo $category['ma_tloai']; ?>">
+                <input type="text" class="form-control" name="txtCatId" readonly value="<?php echo $category->getMaTloai(); ?>">
             </div>
 
             <div class="input-group mt-3 mb-3">
                 <span class="input-group-text">Tên thể loại</span>
-                <input type="text" class="form-control" name="txtCatName" value="<?php echo $category['ten_tloai']; ?>">
+                <input type="text" class="form-control" name="txtCatName" value="<?php echo $category->getTenTloai(); ?>">
             </div>
 
             <!-- Sử dụng text-end và mb-5 để căn chỉnh và thêm khoảng trống -->

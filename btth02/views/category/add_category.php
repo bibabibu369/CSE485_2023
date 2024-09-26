@@ -55,8 +55,6 @@
                         <span class="input-group-text" id="lblCatName">Tên thể loại</span>
                         <input type="text" class="form-control" name="txtCatName" required>
                     </div>
-                    <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
-
                     <div class="form-group float-end">
                         <input type="submit" value="Thêm" class="btn btn-success">
                         <a href="index.php?controller=category&action=index" class="btn btn-warning">Quay lại</a>
