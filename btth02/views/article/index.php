@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Người dùng</title>
+    <title>Bài viết</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -27,7 +27,7 @@
                         <a class="nav-link" aria-current="page" href="index.php?controller=admin&action=index#">Tổng quan</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="index.php?controller=user&action=index">Users</a>
+                        <a class="nav-link" href="index.php?controller=user&action=index">Users</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=category&action=index">Thể loại</a>
@@ -36,7 +36,7 @@
                         <a class="nav-link" href="index.php?controller=author&action=index">Tác giả</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=article&action=index">Bài viết</a>
+                        <a class="nav-link active fw-bold" href="index.php?controller=article&action=index">Bài viết</a>
                     </li>
                     </ul>
                 </div>
@@ -46,30 +46,44 @@
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <a href="index.php?controller=user&action=add" class="btn btn-success">Thêm mới</a>
+                <a href="index.php?controller=article&action=add" class="btn btn-success">Thêm mới</a>
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Mã người dùng</th>
-                            <th scope="col">Tên người dùng</th>
+                            <th scope="col">Mã bài viết</th>
+                            <th scope="col">Tiêu đề</th>
+                            <th scope="col">Tên bài hát</th>
+                            <th scope="col">Thể loại</th>
+                            <th scope="col">Tóm tắt</th>
+                            <th scope="col">Nội dung</th>
+                            <th scope="col">Tác giả</th>
+                            <th scope="col">Ngày viết</th>
+                            <th scope="col">Hình ảnh</th>
                             <th>Sửa</th>
                             <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        if (count($users) > 0) {
+                        if (count($articles) > 0) {
                             // Hiển thị dữ liệu
-                            foreach ($users as $user) {
+                            foreach ($articles as $article) {
                                 echo "<tr>";
-                                echo "<th scope='row'>" . $user->getId() . "</th>";
-                                echo "<td>" . $user->getUsername() . "</td>";
-                                echo "<td><a href='index.php?controller=user&action=edit&id=" . $user->getId() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-                                echo "<td><a href='index.php?controller=user&action=delete&id=" . $user->getId() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa người dùng này?\");'><i class='fa-solid fa-trash'></i></a></td>";
+                                echo "<th scope='row'>" . $article->getMaBviet() . "</th>";
+                                echo "<td>" . $article->getTieude() . "</td>";
+                                echo "<td>" . $article->getTenBhat() . "</td>";
+                                echo "<td>" . $article->getMaTloai() . "</td>";
+                                echo "<td>" . $article->getTomtat() . "</td>";
+                                echo "<td>" . $article->getNoidung() . "</td>";
+                                echo "<td>" . $article->getMaTgia() . "</td>";
+                                echo "<td>" . $article->getNgayviet() . "</td>";
+                                echo "<td><img src='" . $article->getHinhanh() . "' alt='Hình ảnh' width='100'></td>";
+                                echo "<td><a href='index.php?controller=article&action=edit&id=" . $article->getMaBviet() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='index.php?controller=article&action=delete&id=" . $article->getMaBviet() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa bài viết này?\");'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
+                            echo "<tr><td colspan='11' class='text-center'>Không có dữ liệu</td></tr>";
                         }
                         ?>
                     </tbody>

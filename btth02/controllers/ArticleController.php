@@ -1,24 +1,72 @@
 <?php
-class ArticleController{
-    // Hàm xử lý hành động index
-    public function index(){
-        // Nhiệm vụ 1: Tương tác với Services/Models
-        echo "Tương tác với Services/Models from Article";
-        // Nhiệm vụ 2: Tương tác với View
-        echo "Tương tác với View from Article";
+include("services/ArticleService.php");
+
+class articleController {
+    private $articleService;
+
+    public function __construct() {
+        $this->articleService = new articleService();
     }
 
-    public function add(){
-        // Nhiệm vụ 1: Tương tác với Services/Models
-        // echo "Tương tác với Services/Models from Article";
-        // Nhiệm vụ 2: Tương tác với View
-        include("views/article/add_article.php");
+    public function index() {
+        $articles = $this->articleService->getAllArticles();
+        require_once 'views/article/index.php';
     }
 
-    public function list(){
-        // Nhiệm vụ 1: Tương tác với Services/Models
-        // echo "Tương tác với Services/Models from Article";
-        // Nhiệm vụ 2: Tương tác với View
-        include("views/article/list_article.php");
+    public function add() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $tieude = $_POST['txtTitle'];
+            $ten_bhat = $_POST['txtSongName'];
+            $ma_tloai = $_POST['txtCatId'];
+            $tomtat = $_POST['txtSummary'];
+            $noidung = $_POST['txtContent'];
+            $ma_tgia = $_POST['txtAutId'];
+            $ngayviet = $_POST['txtDate'];
+            $hinhanh = $_POST['txtImage'];
+
+            if ($this->articleService->addArticle($tieude, $ten_bhat, $ma_tloai, $tomtat, $noidung, $ma_tgia, $ngayviet, $hinhanh)) {
+                header('Location: index.php?controller=article&action=index');
+            } else {
+                echo "Có lỗi xảy ra, vui lòng thử lại!";
+            }
+        } else {
+            require_once 'views/article/add_article.php';
+        }
+    }
+
+    public function edit() {
+        $id = $_GET['id'];
+        $article = $this->articleService->getMaBviet($id);
+        require_once 'views/article/edit_article.php';
+    }
+
+    public function update() {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $id = $_GET['id'];
+            $tieude = $_POST['txtTitle'];
+            $ten_bhat = $_POST['txtSongName'];
+            $ma_tloai = $_POST['txtCatId'];
+            $tomtat = $_POST['txtSummary'];
+            $noidung = $_POST['txtContent'];
+            $ma_tgia = $_POST['txtAutId'];
+            $ngayviet = $_POST['txtDate'];
+            $hinhanh = $_POST['txtImage'];
+            
+            if ($this->articleService->updateArticle($id, $tieude, $ten_bhat, $ma_tloai, $tomtat, $noidung, $ma_tgia, $ngayviet, $hinhanh)) {
+                header('Location: index.php?controller=article&action=index');
+            } else {
+                echo "Có lỗi xảy ra, vui lòng thử lại!";
+            }
+        }
+    }
+
+    public function delete() {
+        $id = $_GET['id'];
+    
+        if ($this->articleService->deleteArticle($id)) {
+            header('Location: index.php?controller=article&action=index');
+        } else {
+            echo "Không thể xóa bài viết này vì có bài viết liên quan.";
+        }
     }
 }
