@@ -62,17 +62,17 @@
                         <form method="POST" action="index.php?controller=user&action=signup">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
-                                <input type="text" class="form-control" placeholder="Username" name="username" autofocus>
+                                <input type="text" class="form-control" placeholder="Username" name="username" autofocus required>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input type="password" class="form-control" placeholder="Password" name="password">
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="txtPass"><i class="fas fa-key"></i></span>
-                                <input type="password" class="form-control" placeholder="Repeat Password" name="repeat_password">
+                                <input type="password" class="form-control" placeholder="Repeat Password" name="repeat_password" required>
                             </div>
                         
                             <div class="form-group">
@@ -89,31 +89,4 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 </body>
-<script>
-    window.onload = function() {
-        var message = document.getElementById('message-content').innerText;
-        if (message) {
-            document.getElementById('notification').style.display = 'block';
-
-            setTimeout(function() {
-                var notification = document.getElementById('notification');
-                if (notification.style.display === 'block') {
-                    notification.style.display = 'none';
-                }
-            }, 2000);
-        }
-
-        document.addEventListener('click', function(event) {
-            var notification = document.getElementById('notification');
-            if (notification.style.display === 'block') {
-                notification.style.display = 'none';
-            }
-        });
-
-        document.getElementById('notification').addEventListener('click', function(event) {
-            event.stopPropagation();
-        });
-    };
-
-</script>
 </html>

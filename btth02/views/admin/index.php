@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
                 <div class="h3">
-                    <a class="navbar-brand" href="#">Administration</a>
+                    <a class="navbar-brand" href="index.php?controller=admin&action=index#">Administration</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

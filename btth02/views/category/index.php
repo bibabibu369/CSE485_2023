@@ -59,14 +59,14 @@
                     </thead>
                     <tbody>
                         <?php
-                        if ($result->rowCount() > 0) {
+                        if (count($categories)> 0) {
                             // Hiển thị dữ liệu
-                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            foreach ($categories as $category) {
                                 echo "<tr>";
-                                echo "<th scope='row'>" . $row['ma_tloai'] . "</th>";
-                                echo "<td>" . $row['ten_tloai'] . "</td>";
-                                echo "<td><a href='index.php?controller=category&action=edit&id=" . $row['ma_tloai'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-                                echo "<td><a href='index.php?controller=category&action=delete&id=" . $row['ma_tloai'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa thể loại này?\") ;'><i class='fa-solid fa-trash'></i></a></td>";
+                                echo "<th scope='row'>" . $category->getMaTloai() . "</th>";
+                                echo "<td>" . $category->getTenTLoai() . "</td>";
+                                echo "<td><a href='index.php?controller=category&action=edit&id=" . $category->getMaTloai() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='index.php?controller=category&action=delete&id=" . $category->getMaTLoai() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa thể loại này?\") ;'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";
                             }
                         } else {

@@ -13,7 +13,7 @@
         <nav class="navbar navbar-expand-lg bg-body-tertiary shadow p-3 bg-white rounded">
             <div class="container-fluid">
                 <div class="h3">
-                    <a class="navbar-brand" href="#">Administration</a>
+                    <a class="navbar-brand" href="index.php?controller=admin&action=index#">Administration</a>
                 </div>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -58,18 +58,18 @@
                     </thead>
                     <tbody>
                         <?php
-                        if ($result->rowCount() > 0) {
+                        if (count($users) > 0) {
                             // Hiển thị dữ liệu
-                            while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+                            foreach ($users as $user) {
                                 echo "<tr>";
-                                echo "<th scope='row'>" . $row['ma_user'] . "</th>";
-                                echo "<td>" . $row['username'] . "</td>";
-                                echo "<td><a href='index.php?controller=user&action=edit&id=" . $row['ma_user'] . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
-                                echo "<td><a href='index.php?controller=user&action=delete&id=" . $row['ma_user'] . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa người dùng này?\");'><i class='fa-solid fa-trash'></i></a></td>";
+                                echo "<th scope='row'>" . $user->getId() . "</th>";
+                                echo "<td>" . $user->getUsername() . "</td>";
+                                echo "<td><a href='index.php?controller=user&action=edit&id=" . $user->getId() . "'><i class='fa-solid fa-pen-to-square'></i></a></td>";
+                                echo "<td><a href='index.php?controller=user&action=delete&id=" . $user->getId() . "' onclick='return confirm(\"Bạn có chắc chắn muốn xóa người dùng này?\");'><i class='fa-solid fa-trash'></i></a></td>";
                                 echo "</tr>";
                             }
                         } else {
-                            echo "<tr><td colspan='5' class='text-center'>Không có dữ liệu</td></tr>";
+                            echo "<tr><td colspan='4' class='text-center'>Không có dữ liệu</td></tr>";
                         }
                         ?>
                     </tbody>
