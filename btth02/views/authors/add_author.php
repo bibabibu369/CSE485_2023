@@ -31,10 +31,10 @@
                         <a class="nav-link" href="index.php?controller=user&action=index">Users</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active fw-bold" href="index.php?controller=category&action=index">Thể loại</a>
+                        <a class="nav-link" href="index.php?controller=category&action=index">Thể loại</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.php?controller=author&action=index">Tác giả</a>
+                        <a class="nav-link active fw-bold" href="index.php?controller=author&action=index">Tác giả</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?controller=article&action=index">Bài viết</a>
@@ -48,16 +48,16 @@
     <main class="container mt-5 mb-5">
         <div class="row">
             <div class="col-sm">
-                <h3 class="text-center text-uppercase fw-bold">Thêm mới thể loại</h3>
+                <h3 class="text-center text-uppercase fw-bold">Thêm mới tác giả</h3>
                 <!-- Form để thêm thể loại -->
-                <form action="index.php?controller=category&action=add" method="post">
+                <form action="index.php?controller=author&action=add" method="post">
                     <div class="input-group mt-3 mb-3">
-                        <span class="input-group-text" id="lblCatName">Tên thể loại</span>
-                        <input type="text" class="form-control" name="txtCatName" required autofocus>
+                        <span class="input-group-text" id="lblCatName">Tên tác giả</span>
+                        <input type="text" class="form-control" name="txtAutName" required autofocus>
                     </div>
                     <div class="form-group float-end">
                         <input type="submit" value="Thêm" class="btn btn-success">
-                        <a href="index.php?controller=category&action=index" class="btn btn-warning">Quay lại</a>
+                        <a href="index.php?controller=author&action=index" class="btn btn-warning">Quay lại</a>
                     </div>
                 </form>
             </div>
