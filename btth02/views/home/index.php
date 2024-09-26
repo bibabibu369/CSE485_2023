@@ -74,7 +74,7 @@
                     <img src="assets/images/songs/cayvagio.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title text-center">
-                            <a href="views/home/detail.php" class="text-decoration-none">Cây, lá và gió</a>
+                            <a href="" class="text-decoration-none">Cây, lá và gió</a>
                         </h5>
                     </div>
                 </div>
